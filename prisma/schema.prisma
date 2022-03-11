@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  MANAGER
+  CLERK
+  GUEST
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  firstName String @db.VarChar(255)
+  lastName String @db.VarChar(255)
+  email String @unique
+  role Role 
+  reservations Reservation[]
+
+    @@map(name: "user")
+}
+
+model Room {
+  id Int @id @default(autoincrement())
+  rommNumber Int @unique
+  numOfBeds Int
+  pricePerNight Float
+  oceanView Boolean
+  minibar Boolean
+
+  @@map(name: "room")
+} 
+
+model Reservation {
+  id  Int @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id]) 
+  userId Int 
+  dateFrom DateTime
+  dataTo DateTime
+
+  @@map(name: "reservation")
+}
+
