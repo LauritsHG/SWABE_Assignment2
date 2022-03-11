@@ -22,7 +22,7 @@ const typeDefs = gql`
     id: ID!
     user: User
     dateFrom: String!
-    dataTo: String!
+    dateTo: String!
   }
 
   enum Role {
@@ -47,6 +47,18 @@ const typeDefs = gql`
       lastName: String!
       role: Role
     ): User!
+    createRoom(
+      rommNumber: Int!
+      numOfBeds: Int!
+      pricePerNight: Int!
+      minibar: Boolean!
+      oceanView: Boolean!
+    ): Room!
+    createReservation(
+      userId: Int!
+      dateFrom: String!
+      dateTo: String!
+    ): Reservation!
   }
 `;
 

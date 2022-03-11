@@ -11,6 +11,26 @@ const Mutation = {
       },
     });
   },
+  createRoom: (parent, args) => {
+    return prisma.room.create({
+      data: {
+        rommNumber: args.rommNumber,
+        numOfBeds: args.numOfBeds,
+        pricePerNight: args.pricePerNight,
+        minibar: args.minibar,
+        oceanView: args.oceanView,
+      },
+    });
+  },
+  createReservation: (parent, args) => {
+    return prisma.reservation.create({
+      data: {
+        userId: args.userId,
+        dateTo: args.dateTo,
+        dateFrom: args.dateFrom,
+      },
+    });
+  },
 };
 
 module.exports = {
