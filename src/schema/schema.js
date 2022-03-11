@@ -33,6 +33,11 @@ const typeDefs = gql`
 
   type Query {
     getUsers: [User!]
+    getUser: User!
+    getRooms: [Room!]
+    getRoom: Room!
+    getReservations: [Reservation!]
+    getReservation: Reservation!
   }
 
   type Mutation {
